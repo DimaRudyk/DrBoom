@@ -1,0 +1,1 @@
+{"version":3,"file":"game.component.js","sourceRoot":"","sources":["game.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAA0C;AAY1C;IARA;QAUA,QAAG,GAAG,EAAE,CAAC;QACT,QAAG,GAAG,EAAE,CAAC;IAET,CAAC;IALY,IAAI;QARhB,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YAGpB,WAAW,EAAE,qBAAqB;SAEpC,CAAC;OAEW,IAAI,CAKhB;IAAD,WAAC;CAAA,AALD,IAKC;AALY,oBAAI"}
