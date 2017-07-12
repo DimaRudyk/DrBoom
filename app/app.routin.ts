@@ -1,14 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from "./not-found-404/not-found.component";
-import { Game } from "./game/game.component";
 import { GameOver } from "./gameOver/gameOver.component";
+import { MineField } from "app/mineField/mineField.component";
 
 
 
 
 const appRoutes: Routes = [
     
-    { path: '', component: Game  },
+    { path: '', component: MineField  },
     { path: 'GameOver', component:  GameOver },
     { path: '**', component: NotFoundComponent }
 

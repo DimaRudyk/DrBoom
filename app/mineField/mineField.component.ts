@@ -6,13 +6,12 @@ import { Component } from '@angular/core';
     moduleId: module.id,
 
     
-   templateUrl: 'game.component.html',
+   templateUrl: 'mineField.component.html',
 
 })
 
-export class Game {
+export class MineField {
 
-gor = "";
-ver = "";
+    
 
 }

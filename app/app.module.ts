@@ -6,14 +6,15 @@ import { Routing } from "./app.routin";
 import { AppComponent } from "./app.component";
 import { NotFoundComponent } from "./not-found-404/not-found.component";
 import { GameOver } from "./gameOver/gameOver.component";
-import { Game } from "app/game/game.component";
+import { MineFieldSector } from "app/mineFieldSector/mineFieldSector.component";
+import { MineField } from "app/mineField/mineField.component";
 
 
 
 @NgModule({
     imports: [ Routing , BrowserModule ],
                 
-    declarations: [AppComponent, Game, GameOver, NotFoundComponent  ],
+    declarations: [AppComponent, MineField, GameOver, NotFoundComponent, MineFieldSector  ],
 
     providers: [],
     bootstrap: [AppComponent]
