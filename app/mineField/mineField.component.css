@@ -1,0 +1,12 @@
+/deep/ .input-mini {
+    width: 54px
+}
+/deep/ table {
+border-collapse: collapse; 
+ border: 2px solid grey; 
+ background-color:darkgrey;
+
+}
+/deep/ th, td {border: 1px solid grey;}
+/deep/ 
+

@@ -9,18 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_routin_1 = require("./app.routin");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var not_found_component_1 = require("./not-found-404/not-found.component");
 var gameOver_component_1 = require("./gameOver/gameOver.component");
-var game_component_1 = require("app/game/game.component");
+var mineFieldSector_component_1 = require("app/mineFieldSector/mineFieldSector.component");
+var mineField_component_1 = require("app/mineField/mineField.component");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [app_routin_1.Routing, platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, game_component_1.Game, gameOver_component_1.GameOver, not_found_component_1.NotFoundComponent],
-            providers: [],
+            imports: [app_routin_1.Routing, platform_browser_1.BrowserModule, forms_1.FormsModule],
+            declarations: [app_component_1.AppComponent, mineField_component_1.MineField, gameOver_component_1.GameOver, not_found_component_1.NotFoundComponent, mineFieldSector_component_1.MineFieldSector],
+            providers: [mineFieldSector_component_1.MineFieldSector],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

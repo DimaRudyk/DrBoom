@@ -1,7 +1,39 @@
-<p>
-    <input type="text" placeholder="Введите текст">
-    <input type="text" placeholder="Введите текст">
-</p>
-<p>
-    <button class="btn" type="button">Start</button>
-</p>
+<div>
+
+
+    <p>Set field sizes</p>
+
+    <p>
+        <input class="input-mini" placeholder="row" type="number" [(ngModel)]="row" />
+        <input class="input-mini" placeholder="col" type="number" [(ngModel)]="col" />
+    </p>
+
+
+
+
+
+    <p> Set number of mines</p>
+
+    <p>
+        <input class="input-mini" placeholder="col" type="number" [(ngModel)]="mine" />
+    </p>
+
+
+
+    <p>
+        <button class="btn" type="button" (click)="createMineField()">Start</button>
+    </p>
+</div>
+<div>
+    <div style="
+    position: absolute;
+    ">
+        <table *ngFor="let ms of mineField">
+            <tr>
+                <td *ngFor="let mss of ms">
+                    {{mss.id}} {{mss.jd}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

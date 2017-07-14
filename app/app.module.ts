@@ -3,6 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routing } from "./app.routin";
 
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { NotFoundComponent } from "./not-found-404/not-found.component";
 import { GameOver } from "./gameOver/gameOver.component";
@@ -12,11 +13,11 @@ import { MineField } from "app/mineField/mineField.component";
 
 
 @NgModule({
-    imports: [ Routing , BrowserModule ],
-                
-    declarations: [AppComponent, MineField, GameOver, NotFoundComponent, MineFieldSector  ],
+    imports: [Routing, BrowserModule, FormsModule],
 
-    providers: [],
+    declarations: [AppComponent, MineField, GameOver, NotFoundComponent, MineFieldSector],
+
+    providers: [MineFieldSector],
     bootstrap: [AppComponent]
 
 })
