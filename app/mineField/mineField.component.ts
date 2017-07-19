@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Directive } from '@angular/core';
 import { MineFieldSector } from "app/mineFieldSector/mineFieldSector.component";
 
 
@@ -10,6 +10,8 @@ import { MineFieldSector } from "app/mineFieldSector/mineFieldSector.component";
     providers: [MineFieldSector],
     styleUrls: ['mineField.component.css']
 })
+
+@Directive({selector: '[ngClass]'})
 export class MineField {
 
     myStyle: boolean = true;
@@ -55,6 +57,7 @@ export class MineField {
     open(e: any, mss: MineFieldSector) {
 
         mss.ifViewed = false;
+        mss.ngClass = true;
 
         console.log(mss);
         

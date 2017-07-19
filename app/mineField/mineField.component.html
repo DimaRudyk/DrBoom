@@ -28,12 +28,13 @@
     <div style="position: absolute">
         <table *ngFor="let ms of mineField">
             <tr>
-                <td *ngFor="let mss of ms" (click)="open($event, mss)">
+                <td [ngClass]=" mss.ngClass ? 'clicked' : ''" *ngFor="let mss of ms" (click)="open($event, mss)">
 
                     <span [hidden]="mss.ifViewed">  
                     
                         <span  *ngIf="mss.ifMined"><img src="img/glyphicons-291-skull.png" /></span>
-                    <span *ngIf="mss.minesAround"> {{mss.minesAround}}</span>
+                        <span *ngIf="mss.minesAround"> {{mss.minesAround}}</span>
+
                     </span>
                 </td>
             </tr>

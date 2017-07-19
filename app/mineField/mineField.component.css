@@ -13,14 +13,9 @@ border-collapse: collapse;
     height: 25px;
     text-align: center;
 }
-/deep/ .vidkr{
- background-color:#708090
-}
-/deep/ .zakr{
-    border: 3px solid #708090;
-    width: 25px;
-    height: 25px;
-    text-align: center;
+/deep/ .clicked{
+    background-color:#708090;
+ 
 }
 
    

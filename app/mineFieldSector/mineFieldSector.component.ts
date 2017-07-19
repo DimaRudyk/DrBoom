@@ -23,7 +23,7 @@ export class MineFieldSector {
 
     minesAround: number = 0;
 
-    
+    ngClass: boolean = false;
 
 
 

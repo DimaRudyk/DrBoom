@@ -12,6 +12,7 @@ var MineFieldSector = (function () {
         this.ifViewed = true;
         this.ifMined = false;
         this.minesAround = 0;
+        this.ngClass = false;
     }
     MineFieldSector = __decorate([
         core_1.Component({

@@ -41,10 +41,8 @@ var MineField = (function () {
     };
     MineField.prototype.open = function (e, mss) {
         mss.ifViewed = false;
+        mss.ngClass = true;
         console.log(mss);
-        if (mss.ifViewed == false) {
-            this.myStyle = !this.myStyle;
-        }
         while (this.mineCount < this.mine) {
             var posI = Math.floor(Math.random() * (this.row - 1));
             var posJ = Math.floor(Math.random() * (this.col - 1));
@@ -162,6 +160,7 @@ var MineField = (function () {
             providers: [mineFieldSector_component_1.MineFieldSector],
             styleUrls: ['mineField.component.css']
         }),
+        core_1.Directive({ selector: '[ngClass]' }),
         __metadata("design:paramtypes", [mineFieldSector_component_1.MineFieldSector])
     ], MineField);
     return MineField;
