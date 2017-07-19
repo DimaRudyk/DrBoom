@@ -14,10 +14,12 @@ var mineFieldSector_component_1 = require("app/mineFieldSector/mineFieldSector.c
 var MineField = (function () {
     function MineField(mineFieldSector) {
         this.mineFieldSector = mineFieldSector;
-        this.row = 9;
-        this.col = 9;
-        this.mine = 3;
-        //fieldSize:number = this.row * this.col
+        this.myStyle = true;
+        this.row = 3;
+        this.col = 3;
+        this.mine = 1;
+        this.mineCount = 0;
+        this.countSectors = this.row * this.col;
         this.mineFieldRow = [];
         this.mineField = [];
     } //Для юза функций сектора
@@ -27,7 +29,7 @@ var MineField = (function () {
                 var sector = new mineFieldSector_component_1.MineFieldSector();
                 sector.id = i;
                 sector.jd = j;
-                sector.ifViewed = false;
+                sector.ifViewed = true;
                 sector.ifMined = false;
                 this.mineFieldRow.push(sector);
                 if (this.mineFieldRow.length == this.row) {
@@ -35,6 +37,122 @@ var MineField = (function () {
                     this.mineFieldRow = [];
                 }
             }
+        }
+    };
+    MineField.prototype.open = function (e, mss) {
+        mss.ifViewed = false;
+        console.log(mss);
+        if (mss.ifViewed == false) {
+            this.myStyle = !this.myStyle;
+        }
+        while (this.mineCount < this.mine) {
+            var posI = Math.floor(Math.random() * (this.row - 1));
+            var posJ = Math.floor(Math.random() * (this.col - 1));
+            if (this.mineField[posI][posJ].ifMined == false && this.mineField[posI][posJ].minesAround == false) {
+                this.mineField[posI][posJ].ifMined = true;
+                this.mineCount++;
+                this.countingMinesAround(posI, posJ);
+            }
+        }
+    };
+    MineField.prototype.countingMinesAround = function (posI, posJ) {
+        if (posJ == 0 && posI == 0) {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].minesAround++; //77777777
+        }
+        else if (posJ == 8 && posI == 0) {
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].minesAround++; //88888888
+        }
+        else if (posJ == 8 && posI == 8) {
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].minesAround++; //55555555555
+        }
+        else if (posJ == 0 && posI == 8) {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].minesAround++; //4444444
+        }
+        else if (posJ == 0) {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].minesAround++; //4444444
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].minesAround++; //77777777
+        }
+        else if (posI == 0) {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].minesAround++; //77777777
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].minesAround++; //88888888
+        }
+        else if (posJ == 8) {
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].minesAround++; //55555555555
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].minesAround++; //88888888
+        }
+        else if (posI == 8) {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].minesAround++; //4444444
+            if (this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].minesAround++; //55555555555
+        }
+        else {
+            if (this.mineField[posI][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[posI][Math.min(posJ + 1, this.row - 1)].minesAround++; //111111111111
+            if (this.mineField[posI][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[posI][Math.max(posJ - 1, 0)].minesAround++; //2222222222
+            if (this.mineField[Math.max(posI - 1, 0)][posJ].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][posJ].minesAround++; //3333333333
+            if (this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.min(posJ + 1, this.row - 1)].minesAround++; //4444444
+            if (this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.max(posI - 1, 0)][Math.max(posJ - 1, 0)].minesAround++; //55555555555
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][posJ].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][posJ].minesAround++; //666666666
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.min(posJ + 1, this.row - 1)].minesAround++; //77777777
+            if (this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].ifMined == false)
+                this.mineField[Math.min(posI + 1, this.row - 1)][Math.max(posJ - 1, 0)].minesAround++; //88888888
         }
     };
     MineField = __decorate([

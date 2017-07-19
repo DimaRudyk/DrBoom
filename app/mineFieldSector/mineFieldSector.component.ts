@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Input} from '@angular/core';
+import { Input } from '@angular/core';
+import { MineField } from "app/mineField/mineField.component";
 
 @Component({
 
@@ -8,15 +9,25 @@ import { Input} from '@angular/core';
 
 })
 
-export class MineFieldSector  {
+
+
+export class MineFieldSector {
 
     id: number;
 
     jd: number;
 
-    ifViewed: boolean;
+    ifViewed: boolean = true;
 
-    ifMined: boolean;
+    ifMined: boolean = false;
 
-  
+    minesAround: number = 0;
+
+    
+
+
+
+
+
+    
 }

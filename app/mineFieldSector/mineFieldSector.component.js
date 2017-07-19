@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var MineFieldSector = (function () {
     function MineFieldSector() {
+        this.ifViewed = true;
+        this.ifMined = false;
+        this.minesAround = 0;
     }
     MineFieldSector = __decorate([
         core_1.Component({

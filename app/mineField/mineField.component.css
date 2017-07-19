@@ -3,10 +3,25 @@
 }
 /deep/ table {
 border-collapse: collapse; 
- border: 2px solid grey; 
- background-color:darkgrey;
+ border: 2px solid #708090; 
+ background-color:#DCDCDC;
 
 }
-/deep/ th, td {border: 1px solid grey;}
-/deep/ 
+/deep/ th, td {
+    border: 3px solid #708090;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+/deep/ .vidkr{
+ background-color:#708090
+}
+/deep/ .zakr{
+    border: 3px solid #708090;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+   
 
